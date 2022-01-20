@@ -1,0 +1,16 @@
+Use Gradebook;
+
+DROP TABLE IF EXISTS Gradebook;
+
+CREATE TABLE Gradebook
+(
+GradebookID  INT PRIMARY KEY  AUTO_INCREMENT,
+Score DOUBLE NOT NULL,
+Letter CHAR NOT NULL,
+Name VARCHAR(100) NOT NULL,
+DueDate DATE NOT NULL,
+Type VARCHAR(100) NOT NULL,
+Questions INT,
+Reading VARCHAR(100),
+Concept VARCHAR(100)
+);

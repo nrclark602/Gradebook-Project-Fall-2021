@@ -1,6 +1,6 @@
 /*
 
-* Assignment: Gradebook Project Part 1
+* Assignment: Gradebook Project Part 2
 
 * Name: Nicholas Clark
 
@@ -9,6 +9,7 @@ package Project.gradebook;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import Project.exception.GradebookEmptyException;
 
@@ -21,22 +22,21 @@ public class Quiz implements AssignmentInterface{
 	private String type;
 	private int numOfQues;
 	
-	/* Parameters: 	grades - AssignmentInterface[] that holds all of the grades in the gradebook
-	 * 				size - integer that contains the size of the current gradebook
+	/* Parameters: 	grades - ArrayList<AssignmentInterface> that holds all of the grades in the gradebook
 	 * Exception:	Throws a GradebookEmptyException if the gradebook is empty
 	 * This function prints the average quiz questions in the gradebook
 	 */
-	public void printQQuesAvg(AssignmentInterface[] grades, int size) throws GradebookEmptyException {
+	public void printQQuesAvg(ArrayList<AssignmentInterface> grades) throws GradebookEmptyException {
 		//Checks if the gradebook is empty
-		if (size == 0) {
+		if (grades.isEmpty()) {
 			throw new GradebookEmptyException();  
 		}
 		//Get total number of quiz questions
 		int totalQues = 0, numOfQuiz = 0;
-		for(int i = 0; i < size; i++) {
-			if(grades[i].getType() == "Quiz") {
+		for(AssignmentInterface a : grades) {
+			if(a.getType().equals("Quiz")) {
 				Quiz temp = new Quiz();
-				temp = (Quiz) grades[i];
+				temp = (Quiz) a;
 				totalQues = totalQues + temp.getNumOfQues();
 				++numOfQuiz;
 			}

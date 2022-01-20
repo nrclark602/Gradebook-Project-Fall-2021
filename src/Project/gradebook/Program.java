@@ -1,6 +1,6 @@
 /*
 
-* Assignment: Gradebook Project Part 1
+* Assignment: Gradebook Project Part 2
 
 * Name: Nicholas Clark
 
@@ -9,6 +9,7 @@ package Project.gradebook;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import Project.exception.GradebookEmptyException;
 
@@ -21,22 +22,21 @@ public class Program implements AssignmentInterface{
 	private String type;
 	private String concept;
 	
-	/* Parameters: 	grades - AssignmentInterface[] that holds all of the grades in the gradebook
-	 * 				size - integer that contains the size of the current gradebook
+	/* Parameters: 	grades - ArrayList<AssignmentInterface> that holds all of the grades in the gradebook
 	 * Exception:	Throws a GradebookEmptyException if the gradebook is empty
 	 * This function prints all programming concepts in the gradebook
 	 */
-	public void printPConcepts(AssignmentInterface[] grades, int size) throws GradebookEmptyException {
+	public void printPConcepts(ArrayList<AssignmentInterface> grades) throws GradebookEmptyException {
 		//Check if the gradebook is empty
-		if (size == 0) {
+		if (grades.isEmpty()) {
 			throw new GradebookEmptyException();  
 		}
 		String allConcepts = "";
 		//Loop through all programs in the gradebook
-		for(int i = 0; i < size; ++i) {
-			if(grades[i].getType() == "Program") {
+		for(AssignmentInterface a : grades) {
+			if(a.getType().equals("Program")) {
 				Program temp = new Program();
-				temp = (Program) grades[i];
+				temp = (Program) a;
 				//Format string
 				if(allConcepts.isEmpty()) {
 					allConcepts = temp.getConcept();

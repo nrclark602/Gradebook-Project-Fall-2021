@@ -1,6 +1,6 @@
 /*
 
-* Assignment: Gradebook Project Part 1
+* Assignment: Gradebook Project Part 2
 
 * Name: Nicholas Clark
 
@@ -9,6 +9,7 @@ package Project.gradebook;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import Project.exception.GradebookEmptyException;
 
@@ -21,22 +22,21 @@ public class Discussion implements AssignmentInterface{
 	private String type;
 	private String reading;
 	
-	/* Parameters: 	grades - AssignmentInterface[] that holds all of the grades in the gradebook
-	 * 				size - integer that contains the size of the current gradebook
+	/* Parameters: 	grades - ArrayList<AssignmentInterface> that holds all of the grades in the gradebook
 	 * Exception:	Throws a GradebookEmptyException if the gradebook is empty
 	 * This function prints all of the readings for each discussion
 	 */
-	public void printDReadings(AssignmentInterface[] grades, int size) throws GradebookEmptyException {
+	public void printDReadings(ArrayList<AssignmentInterface> grades) throws GradebookEmptyException {
 		//Check if the gradebook is empty
-		if (size == 0) {
+		if (grades.isEmpty()) {
 			throw new GradebookEmptyException();  
 		}
 		String allReadings = "";
 		//Loop through all discussions to get readings
-		for(int i = 0; i < size; ++i) {
-			if(grades[i].getType() == "Discussion") {
+		for(AssignmentInterface a : grades) {
+			if(a.getType().equals("Discussion")) {
 				Discussion temp = new Discussion();
-				temp = (Discussion) grades[i];
+				temp = (Discussion) a;
 				//Format string
 				if(allReadings.isEmpty()) {
 					allReadings = temp.getReading();

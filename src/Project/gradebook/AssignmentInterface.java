@@ -1,6 +1,6 @@
 /*
 
-* Assignment: Gradebook Project Part 1
+* Assignment: Gradebook Project Part 2
 
 * Name: Nicholas Clark
 
